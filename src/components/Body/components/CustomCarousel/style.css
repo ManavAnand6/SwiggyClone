@@ -1,0 +1,18 @@
+#carousel-container {
+  height: 340px;
+  width: 100%;
+  background-color: #171a29;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#carousel-container img {
+  transition-property: width, height;
+  transition-duration: 0.5s;
+}
+
+#carousel-container img:hover {
+  width: 280px;
+  height: 280px;
+}
