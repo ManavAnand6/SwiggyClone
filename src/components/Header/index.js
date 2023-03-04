@@ -1,6 +1,7 @@
 import React from "react";
 import Images from "../../common/images";
 import SvgIcons from "../../common/SvgIcons";
+import "./style.css";
 
 export const Header = () => {
   return (
@@ -14,16 +15,23 @@ export const Header = () => {
 
       <div id="navbar-list">
         <ul>
-          <a href="/">
-            <li>Home</li>
+          <a href="/" className="cart-container">
+            <SvgIcons.OffersLogo />
+            <li className="logo-tag">Offers</li>
           </a>
-          <a href="/">
-            <li>About Us</li>
+          <a href="/" className="cart-container">
+            <SvgIcons.HelpLogo />
+            <li className="logo-tag">Help</li>
           </a>
-          <a href="/">
-            <li>Contact Us</li>
+          <a href="/" className="cart-container">
+            <SvgIcons.SignInLogo />
+            <li className="logo-tag">Sign In</li>
           </a>
-          <a href="/">
+          <a href="/" className="cart-container">
+            <span className="cart-logo-container">
+              <SvgIcons.CartLogo />
+              <span>0</span>
+            </span>
             <li>Cart</li>
           </a>
         </ul>
