@@ -1,5 +1,5 @@
 import React from "react";
-import Images from "../../common/images";
+import { Link } from "react-router-dom";
 import SvgIcons from "../../common/SvgIcons";
 import "./style.css";
 
@@ -15,25 +15,25 @@ export const Header = () => {
 
       <div id="navbar-list">
         <ul>
-          <a href="/" className="cart-container">
+          <Link to={"/"} className="cart-container">
             <SvgIcons.OffersLogo />
             <li className="logo-tag">Offers</li>
-          </a>
-          <a href="/" className="cart-container">
+          </Link>
+          <Link to={"/about"} className="cart-container">
             <SvgIcons.HelpLogo />
             <li className="logo-tag">Help</li>
-          </a>
-          <a href="/" className="cart-container">
+          </Link>
+          <Link to={"/contact"} className="cart-container">
             <SvgIcons.SignInLogo />
             <li className="logo-tag">Sign In</li>
-          </a>
-          <a href="/" className="cart-container">
+          </Link>
+          <Link to={"/"} className="cart-container">
             <span className="cart-logo-container">
               <SvgIcons.CartLogo />
               <span>0</span>
             </span>
             <li>Cart</li>
-          </a>
+          </Link>
         </ul>
       </div>
     </div>

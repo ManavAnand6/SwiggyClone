@@ -3,6 +3,7 @@ import HelpLogo from "../assets/icons/Header/HelpLogo";
 import Logo from "../assets/icons/Header/logo";
 import OffersLogo from "../assets/icons/Header/OffersLogo";
 import SignInLogo from "../assets/icons/Header/SignInLogo";
+import Star from "../assets/icons/RestaurantDetails/Star";
 
 export default {
   Logo,
@@ -10,4 +11,5 @@ export default {
   OffersLogo,
   HelpLogo,
   SignInLogo,
+  Star,
 };

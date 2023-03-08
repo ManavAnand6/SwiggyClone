@@ -8,22 +8,22 @@ export function RestaurantCard({ data }) {
   return (
     <div className="restaurant-card">
       <img
-        src={`${imageLink}${data.data.data.cloudinaryImageId}`}
+        src={`${imageLink}${data?.data?.data?.cloudinaryImageId}`}
         alt="foodItem"
         width="254px"
         height="160px"
       />
-      <div id="restaurant-heading">{data.data.data.name}</div>
-      <div id="restaurant-subheading">{data.data.data.cuisines.join(", ")}</div>
+      <div id="restaurant-heading">{data?.data?.data?.name}</div>
+      <div id="restaurant-subheading">{data?.data?.data?.cuisines?.join(", ")}</div>
       <div id="restaurant-subContainer">
         <div id="rating-container">
           <img src={Images.STAR} />
-          <div>{data.data.data.avgRating}</div>
+          <div>{data?.data?.data?.avgRating}</div>
         </div>
         <div className="dot-container"></div>
-        <div>{data.data.data.slaString}</div>
+        <div>{data?.data?.data?.slaString}</div>
         <div className="dot-container"></div>
-        <div>{data.data.data.costForTwoString}</div>
+        <div>{data?.data?.data?.costForTwoString}</div>
       </div>
     </div>
   );

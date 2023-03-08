@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { RestaurantCard, CustomCarousel } from "./components";
-import { data } from "../../common/constant";
 import "./style.css";
+import { BodyShimmer } from "./bodyShimmer";
 
 export const Body = () => {
-  const [restaurantData, setRestaurantData] = useState(data);
+  const [restaurantData, setRestaurantData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const onValueChange = (e) => {
     setSearchValue(e.target.value);
@@ -20,9 +20,37 @@ export const Body = () => {
     }
   };
 
+  const getRestaurantData = async () => {
+    fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6539225&lng=77.271046&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(response.status);
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setRestaurantData(data?.data?.cards);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
+  // Readable stream is of type object
+  // First then returns a readable stream we have to convert it into useable format
+  
+
+  useEffect(() => {
+    getRestaurantData();
+  }, []);
+
   useEffect(() => {
     if (!searchValue) {
-      setRestaurantData(data);
+      getRestaurantData();
     }
   }, [searchValue]);
 
@@ -41,9 +69,9 @@ export const Body = () => {
           Search
         </button>
       </div>
-      {restaurantData.map((item) => {
+      {restaurantData.length !== 0 ? restaurantData.map((item) => {
         return <RestaurantCard data={item} />;
-      })}
+      }) : <BodyShimmer />}
     </div>
   );
 };

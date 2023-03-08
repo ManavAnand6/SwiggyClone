@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './style.css';
 
 export const Footer = () => {
   return (
-    <div>footer</div>
+    <div id="footer">
+      <div>&copy; Copyright to Swiggy Clone 2023 </div>
+    </div>
   )
 }
