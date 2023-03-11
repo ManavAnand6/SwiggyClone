@@ -5,6 +5,7 @@
   /* border: 1px solid red; */
   padding: 20px;
   margin-top: 10px;
+  flex-direction: column;
 }
 
 .borderStyle {
@@ -36,7 +37,7 @@
 #first-container {
   display: flex;
   /* border: 1px solid yellow; */
-  border-bottom: 1px solid #e9e9eb;
+  border-bottom: 1.5px dashed #e9e9eb;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -78,6 +79,46 @@
 #restaurant-rating-container span {
   font-size: 10px;
   color: #8b8d97;
-  font-family: 'ProximaNovaCondensedRegular', arial, 'Helvetica Neue', sans-serif;
+  font-family: "ProximaNovaCondensedRegular", arial, "Helvetica Neue",
+    sans-serif;
   font-weight: 600;
+}
+
+#second-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+}
+
+#delivery-details-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.details-container {
+  display: flex;
+  align-items: center;
+}
+
+.details-container span {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.detailsStyle {
+  color: #3e4152;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#coupon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#third-container {
+  margin-top: 10px;
 }

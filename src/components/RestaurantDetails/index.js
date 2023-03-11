@@ -1,6 +1,6 @@
 import React from "react";
-import Images from "../../common/images";
 import SvgIcons from "../../common/SvgIcons";
+import { ComponentCustomCoupon, CustomAccordion } from "./components";
 import "./style.css";
 
 export function RestaurantDetails() {
@@ -9,7 +9,7 @@ export function RestaurantDetails() {
       <div id="first-container">
         <div id="restaurant-container">
           <div id="restaurant-name">
-            Chawla's Chicken Corner ( Geeta Colony)
+            Chawla's Chicken Corner ( Geeta Colony )
           </div>
           <div id="cuisine">North Indian, Mughlai</div>
           <div id="restaurant-address">
@@ -26,6 +26,29 @@ export function RestaurantDetails() {
           </div>
           <span>100+ ratings</span>
         </div>
+      </div>
+      <div id="second-container">
+        <div id="delivery-details-container">
+          <div className="details-container">
+            <SvgIcons.TimerLogo />
+            <span className="detailsStyle">29 Mins</span>
+          </div>
+          <div className="details-container">
+            <SvgIcons.RupeeLogo />
+            <span className="detailsStyle">200 For Two</span>
+          </div>
+        </div>
+        <div id="coupon-list">
+          <ComponentCustomCoupon />
+          <ComponentCustomCoupon />
+          <ComponentCustomCoupon />
+        </div>
+      </div>
+      <div id="third-container">
+        <CustomAccordion title="Recommended"/>
+        <CustomAccordion title="Hello"/>
+        <CustomAccordion title="Hello"/>
+        <CustomAccordion title="Hello"/>
       </div>
     </div>
   );
