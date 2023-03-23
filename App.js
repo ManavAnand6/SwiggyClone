@@ -1,7 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Body, Footer, Header, Contact, About, RestaurantDetails } from "./src/components";
+import {
+  Body,
+  Footer,
+  Header,
+  Contact,
+  About,
+  RestaurantDetails,
+} from "./src/components";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./src/services/store";
 
 const AppLayout = () => {
   return (
@@ -24,19 +33,23 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />
+        element: <About />,
       },
       {
         path: "/contact",
-        element: <Contact />
+        element: <Contact />,
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantDetails />
-      }
+        element: <RestaurantDetails />,
+      },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={appRouter} />
+  </Provider>
+);

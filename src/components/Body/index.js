@@ -21,7 +21,7 @@ export const Body = () => {
   };
 
   const getRestaurantData = async () => {
-    fetch(
+    await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6539225&lng=77.271046&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
     )
       .then((response) => {

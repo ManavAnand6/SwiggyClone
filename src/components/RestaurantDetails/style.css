@@ -2,8 +2,8 @@
   display: flex;
   background-color: white;
   min-height: 100vh;
-  /* border: 1px solid red; */
   padding: 20px;
+  padding-bottom: 0;
   margin-top: 10px;
   flex-direction: column;
 }
@@ -24,19 +24,19 @@
   flex-direction: row;
   color: #7e808c;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 #restaurant-name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #282c3f;
   margin-bottom: 8px;
+  text-transform: capitalize;
 }
 
 #first-container {
   display: flex;
-  /* border: 1px solid yellow; */
   border-bottom: 1.5px dashed #e9e9eb;
   flex-direction: row;
   justify-content: space-between;
@@ -121,4 +121,54 @@
 
 #third-container {
   margin-top: 10px;
+}
+
+#license-info-container {
+  display: flex;
+  background-color: #f1f1f6;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+#license-logo {
+  height: 30px;
+  width: 60px;
+  margin-right: 25px;
+}
+
+#license-number {
+  font-size: 13px;
+  color: #93959f;
+  align-self: center;
+}
+
+#address-container {
+  padding: 10px;
+  background-color: #f1f1f6;
+}
+
+#address-sub-container {
+  border-top: 1px solid #a9abb2;
+  padding-top: 16px;
+  text-transform: capitalize;
+  color: #93959f;
+  margin-bottom: 80px;
+}
+
+#address-restaurant-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#address-restaurant-area {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+#complete-address {
+  color: #a9abb2;
+  font-size: 12px;
 }
