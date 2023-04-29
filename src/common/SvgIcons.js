@@ -8,6 +8,7 @@ import TimerLogo from "../assets/icons/RestaurantDetails/TimerLogo";
 import RupeeLogo from "../assets/icons/RestaurantDetails/RupeeLogo";
 import CaretDown from "../assets/icons/RestaurantDetails/CaretDown";
 import CaretUp from "../assets/icons/RestaurantDetails/CaretUp";
+import IntroSwiggyLogo from "../assets/icons/IntroPage/IntroSwiggyLogo";
 
 export default {
   Logo,
@@ -20,4 +21,5 @@ export default {
   RupeeLogo,
   CaretDown,
   CaretUp,
+  IntroSwiggyLogo,
 };

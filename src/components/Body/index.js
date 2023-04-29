@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { RestaurantCard, CustomCarousel } from "./components";
 import "./style.css";
 import { BodyShimmer } from "./bodyShimmer";
+import { useSelector } from "react-redux";
 
 export const Body = () => {
+  const introPageState = useSelector((state) => state.reducerIntroPage);
+  const { location } = introPageState;
+  const { longitude, latitude } = location;
   const [restaurantData, setRestaurantData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const onValueChange = (e) => {
@@ -22,7 +26,7 @@ export const Body = () => {
 
   const getRestaurantData = async () => {
     await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6539225&lng=77.271046&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
+      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}6&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`
     )
       .then((response) => {
         if (response.ok) {
@@ -70,7 +74,7 @@ export const Body = () => {
         </button>
       </div>
       {restaurantData.length !== 0 ? restaurantData.map((item) => {
-        return <RestaurantCard data={item} />;
+        return <RestaurantCard data={item} key={item?.data?.data?.id} />;
       }) : <BodyShimmer />}
     </div>
   );

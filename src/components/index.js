@@ -4,3 +4,4 @@ export * from './Body';
 export * from './Contact';
 export * from './About';
 export * from './RestaurantDetails';
+export * from './Button';

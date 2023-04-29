@@ -2,7 +2,6 @@ import React from "react";
 
 const Logo = () => (
   <svg
-    className="_8pSp-"
     viewBox="0 0 559 825"
     height={49}
     width={34}

@@ -1,25 +1,25 @@
 import React from "react";
 import "./style.css";
 
-export const BodyShimmer = () => {
-  const RestaurantCardShimmer = () => {
-    return (
-      <div className="card-shimmer">
-        <div id="image-Shimmer" />
-        <div id="heading-shimmer" />
-        <div id="subHeading-shimmer" />
-        <div id="restaurant-subContainer">
-          <div className="details-shimmer" />
-          <div className="details-shimmer" />
-          <div className="details-shimmer" />
-        </div>
+const RestaurantCardShimmer = () => {
+  return (
+    <div className="card-shimmer">
+      <div id="image-Shimmer" />
+      <div id="heading-shimmer" />
+      <div id="subHeading-shimmer" />
+      <div id="restaurant-subContainer">
+        <div className="details-shimmer" />
+        <div className="details-shimmer" />
+        <div className="details-shimmer" />
       </div>
-    );
-  };
+    </div>
+  );
+};
 
+export const BodyShimmer = () => {
   return (
     <div id="body-container">
-      {Array(10).fill('').map(() => <RestaurantCardShimmer />)}
+      {Array(10).fill('').map((item, index) => <RestaurantCardShimmer key={index} index={index} />)}
     </div>
   );
 };
