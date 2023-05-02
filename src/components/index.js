@@ -5,3 +5,4 @@ export * from './Contact';
 export * from './About';
 export * from './RestaurantDetails';
 export * from './Button';
+export * from './CustomModal';

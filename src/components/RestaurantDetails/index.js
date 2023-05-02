@@ -15,7 +15,9 @@ import "./style.css";
 export function RestaurantDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const restaurantDetailsState = useSelector((state) => state.reducerRestaurantDetails);
+  const restaurantDetailsState = useSelector(
+    (state) => state.reducerRestaurantDetails
+  );
   const { restaurantMenuData } = restaurantDetailsState;
   const { TYPE_ITEM, TYPE_RESTAURANT, TYPE_RESTAURANT_ADDRESS } = constants;
 
@@ -73,75 +75,87 @@ export function RestaurantDetails() {
     dispatch(getRestaurantMenuData(id));
   }, []);
 
-  return restaurantMenuData.length !== 0 && (
-    <div id="restaurant-details-container" className="borderStyle">
-      <div id="first-container">
-        <div id="restaurant-container">
-          <div id="restaurant-name">
-            {restaurantMenuData?.cards[0]?.card?.card?.info?.name}
-          </div>
-          <div id="cuisine">
-            {restaurantMenuData?.cards[0]?.card?.card?.info?.cuisines?.join(
-              ", "
-            )}
-          </div>
-          <div id="restaurant-address">
-            <div>
-              {restaurantMenuData?.cards[0]?.card?.card?.info?.areaName}
+  return (
+    restaurantMenuData.length !== 0 && (
+      <div id="restaurant-details-container" className="borderStyle">
+        <div id="first-container">
+          <div id="restaurant-container">
+            <div id="restaurant-name">
+              {restaurantMenuData?.cards[0]?.card?.card?.info?.name}
             </div>
-            <div>
-              {
-                restaurantMenuData?.cards[0]?.card?.card?.info?.sla
-                  ?.lastMileTravelString
-              }
+            <div id="cuisine">
+              {restaurantMenuData?.cards[0]?.card?.card?.info?.cuisines?.join(
+                ", "
+              )}
+            </div>
+            <div id="restaurant-address">
+              <div>
+                {restaurantMenuData?.cards[0]?.card?.card?.info?.areaName}
+              </div>
+              <div>
+                {
+                  restaurantMenuData?.cards[0]?.card?.card?.info?.sla
+                    ?.lastMileTravelString
+                }
+              </div>
             </div>
           </div>
-        </div>
-        <div id="restaurant-rating-container">
-          <div id="rating-container-upper">
-            <span id="rating-star">
-              <SvgIcons.Star />
-            </span>
+          <div id="restaurant-rating-container">
+            <div id="rating-container-upper">
+              <span id="rating-star">
+                <SvgIcons.Star />
+              </span>
+              <span>
+                {restaurantMenuData?.cards[0]?.card?.card?.info?.avgRating}
+              </span>
+            </div>
             <span>
-              {restaurantMenuData?.cards[0]?.card?.card?.info?.avgRating}
-            </span>
-          </div>
-          <span>
-            {restaurantMenuData?.cards[0]?.card?.card?.info?.totalRatingsString}
-          </span>
-        </div>
-      </div>
-      <div id="second-container">
-        <div id="delivery-details-container">
-          <div className="details-container">
-            <SvgIcons.TimerLogo />
-            <span className="detailsStyle">
-              {restaurantMenuData?.cards[0]?.card?.card?.info?.sla?.slaString}
-            </span>
-          </div>
-          <div className="details-container">
-            <SvgIcons.RupeeLogo />
-            <span className="detailsStyle">
               {
                 restaurantMenuData?.cards[0]?.card?.card?.info
-                  ?.costForTwoMessage
+                  ?.totalRatingsString
               }
             </span>
           </div>
         </div>
-        <div id="coupon-list">
-          {renderCoupon(
-            restaurantMenuData?.cards[1]?.card?.card?.gridElements
-              ?.infoWithStyle?.offers
+        <div id="second-container">
+          <div id="delivery-details-container">
+            <div className="details-container">
+              <SvgIcons.TimerLogo />
+              <span className="detailsStyle">
+                {restaurantMenuData?.cards[0]?.card?.card?.info?.sla?.slaString}
+              </span>
+            </div>
+            <div className="details-container">
+              <SvgIcons.RupeeLogo />
+              <span className="detailsStyle">
+                {
+                  restaurantMenuData?.cards[0]?.card?.card?.info
+                    ?.costForTwoMessage
+                }
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              overflowX: "scroll",
+              whiteSpace: "nowrap",
+              WebkitOverflowScrolling: "touch",
+            }}
+            id="coupon-list"
+          >
+            {renderCoupon(
+              restaurantMenuData?.cards[1]?.card?.card?.gridElements
+                ?.infoWithStyle?.offers
+            )}
+          </div>
+        </div>
+        <div id="third-container">
+          {renderFoodItems(
+            restaurantMenuData?.cards[restaurantMenuData?.cards.length - 1]
+              ?.groupedCard?.cardGroupMap?.REGULAR?.cards
           )}
         </div>
       </div>
-      <div id="third-container">
-        {renderFoodItems(
-          restaurantMenuData?.cards[restaurantMenuData?.cards.length -1]?.groupedCard?.cardGroupMap?.REGULAR
-            ?.cards
-        )}
-      </div>
-    </div>
+    )
   );
 }

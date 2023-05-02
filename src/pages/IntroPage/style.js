@@ -1,12 +1,12 @@
 export const styles = {
   introPageSubContainerOne: {
-    width: "60%",
+    width: "45%",
     paddingLeft: "120px",
     paddingTop: "60px",
     paddingRight: "60px",
   },
   introPageSubContainerTwo: {
-    width: "40%",
+    width: "55%",
   },
   introPageContainer: {
     display: "flex",
@@ -95,7 +95,7 @@ export const styles = {
     lineHeight: "28px",
     paddingTop: "0",
     paddingLeft: "25px",
-    paddingRight: "190px",
+    paddingRight: "170px",
     caretColor: "#fc8019",
     fontSize: "18px",
     fontWeight: "500",
@@ -106,13 +106,11 @@ export const styles = {
     color: "#686b78",
   },
   locateMeStyle: {
+    width: '80px',
     border: "1px solid #bebfc5",
     borderLeft: "0",
     height: '100%',
-    paddingLeft: "10px",
-    paddingRight: "20px",
     display: "flex",
-    justifyContent: 'center',
     alignItems: 'center',
     fontWeight: "500",
     fontSize: "14px",

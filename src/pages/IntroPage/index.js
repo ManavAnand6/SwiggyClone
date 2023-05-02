@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgIcons from "../../common/SvgIcons";
 import { Button } from "../../components/Button";
 import { styles } from "./style";
 import { imageLinkTwo } from "../../common/constant";
 import { SwiggyFeatures } from "./components";
-import { Footer } from "../../components";
+import { CustomModal, Footer } from "../../components";
 import { secondContainerData } from "./dummyData";
 import { useLocation } from "../../utilities/hooks/useLocation";
 
 export function IntroPage() {
   const { handleClick } = useLocation();
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    if (showModal) {
+      setShowModal(false);
+      document.body.style.overflow = "auto";
+    } else {
+      setShowModal(true);
+      document.body.style.overflow = "hidden";
+    }
+  };
 
   return (
     <div>
@@ -23,6 +34,7 @@ export function IntroPage() {
               <Button
                 buttonText="Login"
                 customStyle={styles.loginButtonStyle}
+                onClick={openModal}
               />
               <Button
                 buttonText="Sign up"
@@ -118,6 +130,17 @@ export function IntroPage() {
         </div>
       </div>
       <Footer />
+      <CustomModal visible={showModal} openModal={openModal}>
+        <div>
+          <div>
+            <div>Login</div>
+            <div>
+              <div>or </div>
+              <div>create your account</div>
+            </div>
+          </div>
+        </div>
+      </CustomModal>
     </div>
   );
 }
