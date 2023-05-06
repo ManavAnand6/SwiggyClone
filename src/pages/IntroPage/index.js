@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import SvgIcons from "../../common/SvgIcons";
 import { Button } from "../../components/Button";
 import { styles } from "./style";
+import { useFormik } from "formik";
 import { imageLinkTwo } from "../../common/constant";
-import { SwiggyFeatures } from "./components";
+import { LoginForm, SwiggyFeatures } from "./components";
 import { CustomModal, Footer } from "../../components";
 import { secondContainerData } from "./dummyData";
 import { useLocation } from "../../utilities/hooks/useLocation";
@@ -13,6 +14,7 @@ export function IntroPage() {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
+    console.log('Hits');
     if (showModal) {
       setShowModal(false);
       document.body.style.overflow = "auto";
@@ -131,15 +133,37 @@ export function IntroPage() {
       </div>
       <Footer />
       <CustomModal visible={showModal} openModal={openModal}>
-        <div>
-          <div>
-            <div>Login</div>
-            <div>
-              <div>or </div>
-              <div>create your account</div>
-            </div>
+        <>
+          <div style={styles.modalCrossButtonStyle} onClick={openModal}>
+            <SvgIcons.CrossButton />
           </div>
-        </div>
+          <div
+            style={{
+              paddingLeft: "40px",
+              paddingRight: "124px",
+            }}
+          >
+            <div style={styles.modalContainerStyle}>
+              <div>
+                <div style={styles.modalLoginTextStyle}>Login</div>
+                <div style={styles.modalSubTextContainerStyle}>
+                  <div style={styles.modalOrTextStyle}>or</div>
+                  <div style={styles.modalCreateAccTextStyle}>
+                    create your account
+                  </div>
+                </div>
+                <div style={styles.modalDividerStyle}></div>
+              </div>
+              <img
+                width="100"
+                height="105"
+                src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
+              />
+            </div>
+            <LoginForm />
+            {/* <div>By clicking on Login, I accept the Terms & Conditions & Privacy Policy</div> */}
+          </div>
+        </>
       </CustomModal>
     </div>
   );

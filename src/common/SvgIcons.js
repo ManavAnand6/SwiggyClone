@@ -9,6 +9,7 @@ import RupeeLogo from "../assets/icons/RestaurantDetails/RupeeLogo";
 import CaretDown from "../assets/icons/RestaurantDetails/CaretDown";
 import CaretUp from "../assets/icons/RestaurantDetails/CaretUp";
 import IntroSwiggyLogo from "../assets/icons/IntroPage/IntroSwiggyLogo";
+import CrossButton from "../assets/icons/IntroPage/CrossButton";
 
 export default {
   Logo,
@@ -22,4 +23,5 @@ export default {
   CaretDown,
   CaretUp,
   IntroSwiggyLogo,
+  CrossButton,
 };
