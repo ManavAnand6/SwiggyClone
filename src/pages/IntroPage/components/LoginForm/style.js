@@ -1,7 +1,7 @@
 import { LOGIN_FORM_CONSTANTS } from "./constantsLoginForm";
 
 export const styles = {
-  loginFormPhNumberContainerStyle: (state) => {
+  loginFormContainerStyle: (state) => {
     return {
       border: "1px solid #d4d5d9",
       height: "70px",
@@ -20,7 +20,7 @@ export const styles = {
       flexDirection: "column",
     };
   },
-  phoneNumberLabelStyle: (state) => {
+  labelStyle: (state) => {
     if (state === LOGIN_FORM_CONSTANTS.INITIAL_STATE) {
       return {
         color: "#93959f",
@@ -39,7 +39,7 @@ export const styles = {
       };
     }
   },
-  phNumberInputTagStyle: {
+  inputTagStyle: {
     border: "none",
     outline: "none",
     height: "100%",

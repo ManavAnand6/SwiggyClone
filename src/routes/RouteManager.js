@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RouteUser } from "./RouteUser";
 import { RouteGuest } from "./RouteGuest";
+import { StringProvider } from "../common/StringProvider";
 
 export function RouteManager() {
   const introPageState = useSelector((state) => state.reducerIntroPage);
-  console.log('introPageState',introPageState);
+  console.log("introPageState", introPageState);
   const { location } = introPageState;
   const { latitude, longitude } = location;
 
@@ -15,5 +16,9 @@ export function RouteManager() {
     }
     return true;
   };
-  return handleRoute() ? <RouteUser /> : <RouteGuest />;
+  return (
+    <StringProvider>
+      {handleRoute() ? <RouteUser /> : <RouteGuest />}
+    </StringProvider>
+  );
 }

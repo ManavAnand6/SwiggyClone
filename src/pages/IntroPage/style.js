@@ -241,5 +241,11 @@ export const styles = {
     fontWeight: "bolder",
     letterSpacing: ".53px",
     padding: "0",
+  },
+  afterLoginTextStyle: {
+    fontSize: '12px',
+    color: '#686b78',
+    marginTop: '6px',
+    fontWeight: '500',
   }
 };

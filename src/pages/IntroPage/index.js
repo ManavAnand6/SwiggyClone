@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SvgIcons from "../../common/SvgIcons";
 import { Button } from "../../components/Button";
 import { styles } from "./style";
-import { useFormik } from "formik";
 import { imageLinkTwo } from "../../common/constant";
 import { LoginForm, SwiggyFeatures } from "./components";
 import { CustomModal, Footer } from "../../components";
 import { secondContainerData } from "./dummyData";
 import { useLocation } from "../../utilities/hooks/useLocation";
+import { StringContext } from "../../common/StringProvider";
 
 export function IntroPage() {
+  const translations = useContext(StringContext);
   const { handleClick } = useLocation();
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
-    console.log('Hits');
     if (showModal) {
       setShowModal(false);
       document.body.style.overflow = "auto";
@@ -34,12 +34,12 @@ export function IntroPage() {
             </span>
             <div>
               <Button
-                buttonText="Login"
+                buttonText={translations.LOGIN}
                 customStyle={styles.loginButtonStyle}
                 onClick={openModal}
               />
               <Button
-                buttonText="Sign up"
+                buttonText={translations.SIGN_UP}
                 customStyle={styles.signupButtonStyle}
               />
             </div>
@@ -47,19 +47,19 @@ export function IntroPage() {
           <div>
             <div style={styles.textOneStyle}>Hungry ?</div>
             <div style={styles.textTwoStyle}>
-              Order food from favorite restaurants near you.
+              {translations.INTRO_PAGE_LONG_TEXT_ONE}
             </div>
             <div style={styles.inputTagContainerStyle}>
               <div style={styles.inputContainer}>
                 <input
                   type="text"
-                  placeholder="Enter your delivery location"
+                  placeholder={translations.ENTER_YOUR_DELIVERY_LOCATION}
                   style={styles.inputTagStyle}
                 />
-                <div style={styles.locateMeStyle}>Locate Me</div>
+                <div style={styles.locateMeStyle}>{translations.LOCATE_ME}</div>
               </div>
               <Button
-                buttonText="FIND FOOD"
+                buttonText={translations.FIND_FOOD}
                 customStyle={styles.findFoodButtonStyle}
                 onClick={handleClick}
               />
@@ -85,11 +85,10 @@ export function IntroPage() {
       <div style={styles.introPageThirdContainer}>
         <div style={styles.subContainerStyle}>
           <div style={styles.thirdContainerHeadingStyle}>
-            Restaurants in your pocket
+            {translations.RESTAURANTS_IN_YOUR_POCKET}
           </div>
           <div style={styles.thirdContainerSubHeadingStyle}>
-            Order from your favorite restaurants & track on the go, with the
-            all-new Swiggy app.
+            {translations.INTRO_PAGE_LONG_TEXT_TWO}
           </div>
           <div style={styles.linkContainerStyle}>
             <a
@@ -145,11 +144,13 @@ export function IntroPage() {
           >
             <div style={styles.modalContainerStyle}>
               <div>
-                <div style={styles.modalLoginTextStyle}>Login</div>
+                <div style={styles.modalLoginTextStyle}>
+                  {translations.LOGIN}
+                </div>
                 <div style={styles.modalSubTextContainerStyle}>
-                  <div style={styles.modalOrTextStyle}>or</div>
+                  <div style={styles.modalOrTextStyle}>{translations.OR}</div>
                   <div style={styles.modalCreateAccTextStyle}>
-                    create your account
+                    {translations.CREATE_YOUR_ACCOUNT}
                   </div>
                 </div>
                 <div style={styles.modalDividerStyle}></div>
@@ -161,7 +162,9 @@ export function IntroPage() {
               />
             </div>
             <LoginForm />
-            {/* <div>By clicking on Login, I accept the Terms & Conditions & Privacy Policy</div> */}
+            <div style={styles.afterLoginTextStyle}>
+              {translations.SWIGGY_POLICY_TEXT_LINE}
+            </div>
           </div>
         </>
       </CustomModal>
