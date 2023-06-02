@@ -6,7 +6,7 @@ import { imageLinkTwo } from "../../common/constant";
 import { LoginForm, SwiggyFeatures } from "./components";
 import { CustomModal, Footer } from "../../components";
 import { secondContainerData } from "./dummyData";
-import { useLocation } from "../../utilities/hooks/useLocation";
+import { useLocation } from "../../hooks/useLocation";
 import { StringContext } from "../../common/StringProvider";
 
 export function IntroPage() {

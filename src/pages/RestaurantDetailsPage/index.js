@@ -12,7 +12,7 @@ import {
 import { constants } from "./constantRestaurantDetails";
 import "./style.css";
 
-export function RestaurantDetails() {
+export function RestaurantDetailsPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const restaurantDetailsState = useSelector(
@@ -37,35 +37,39 @@ export function RestaurantDetails() {
 
   const renderFoodItems = (foodItemsData) => {
     const data = foodItemsData.map((item) => {
-      if (item?.card?.card?.["@type"] === TYPE_ITEM) {
-        const { title, itemCards } = item?.card?.card;
-        return (
-          <CustomAccordion title={title}>
-            {renderItems(itemCards)}
-          </CustomAccordion>
-        );
-      } else if (item?.card?.card?.["@type"] === TYPE_RESTAURANT) {
-        return (
-          <div id="license-info-container">
-            <img
-              src={`${imageLink}${item?.card?.card?.imageId}`}
-              id="license-logo"
-            />
-            <span id="license-number">{item?.card?.card?.text}</span>
-          </div>
-        );
-      } else if (item?.card?.card?.["@type"] === TYPE_RESTAURANT_ADDRESS) {
-        return (
-          <div id="address-container">
-            <div id="address-sub-container">
-              <div id="address-restaurant-name">{item?.card?.card?.name}</div>
-              <div id="address-restaurant-area">{item?.card?.card?.area}</div>
-              <div id="complete-address">
-                {item?.card?.card?.completeAddress}
+      const type = item?.card?.card?.["@type"];
+      switch (type) {
+        case TYPE_ITEM:
+          const { title, itemCards } = item?.card?.card;
+          return (
+            <CustomAccordion title={title}>
+              {renderItems(itemCards)}
+            </CustomAccordion>
+          );
+        case TYPE_RESTAURANT:
+          return (
+            <div id="license-info-container">
+              <img
+                src={`${imageLink}${item?.card?.card?.imageId}`}
+                id="license-logo"
+              />
+              <span id="license-number">{item?.card?.card?.text}</span>
+            </div>
+          );
+        case TYPE_RESTAURANT_ADDRESS:
+          return (
+            <div id="address-container">
+              <div id="address-sub-container">
+                <div id="address-restaurant-name">{item?.card?.card?.name}</div>
+                <div id="address-restaurant-area">{item?.card?.card?.area}</div>
+                <div id="complete-address">
+                  {item?.card?.card?.completeAddress}
+                </div>
               </div>
             </div>
-          </div>
-        );
+          );
+        default:
+          return null;
       }
     });
     return data;

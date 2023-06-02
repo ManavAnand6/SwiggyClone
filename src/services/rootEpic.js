@@ -1,6 +1,6 @@
 import { combineEpics } from "redux-observable";
 import { catchError } from "rxjs";
-import { epicRestaurantDetails } from "../components/RestaurantDetails/epicRestaurantDetails";
+import { epicRestaurantDetails } from "../pages/RestaurantDetailsPage/epicRestaurantDetails";
 
 const epics = [
   epicRestaurantDetails,

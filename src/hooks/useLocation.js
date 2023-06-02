@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setLocation } from "../../pages/IntroPage/actionIntroPage";
+import { setLocation } from "../pages/IntroPage/actionIntroPage";
 
 export function useLocation() {
   const dispatch = useDispatch();

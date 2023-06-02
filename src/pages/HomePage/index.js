@@ -4,7 +4,7 @@ import "./style.css";
 import { BodyShimmer } from "./bodyShimmer";
 import { useSelector } from "react-redux";
 
-export const Body = () => {
+export const HomePage = () => {
   const introPageState = useSelector((state) => state.reducerIntroPage);
   const { location } = introPageState;
   const { longitude, latitude } = location;

@@ -1,23 +1,7 @@
 import React from "react";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import {
-  About,
-  Body,
-  Contact,
-  Footer,
-  Header,
-  RestaurantDetails,
-} from "../components";
-
-const AppLayout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
-};
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AppLayout } from "../layouts";
+import { AboutPage, ContactPage, HomePage, RestaurantDetailsPage } from "../pages";
 
 const userRouter = createBrowserRouter([
   {
@@ -26,19 +10,19 @@ const userRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <HomePage />,
       },
       {
         path: "/about",
-        element: <About />,
+        element: <AboutPage />,
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: <ContactPage />,
       },
       {
         path: "/restaurant/:id",
-        element: <RestaurantDetails />,
+        element: <RestaurantDetailsPage />,
       },
     ],
   },

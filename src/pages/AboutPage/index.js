@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export const About = () => {
+export const AboutPage = () => {
   return (
     <div id='About'>About</div>
   )
