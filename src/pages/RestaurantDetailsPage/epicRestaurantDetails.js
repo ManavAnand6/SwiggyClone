@@ -35,6 +35,7 @@ export const epicRestaurantDetails = (action$, state$) =>
       };
       return from(getMenuData(body)).pipe(
         map((res) => {
+          console.log('res', res);
           if(res?.statusCode === 0){
             return setRestaurantMenuData(res?.data);
           }

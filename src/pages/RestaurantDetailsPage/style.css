@@ -178,3 +178,11 @@
   color: #a9abb2;
   font-size: 12px;
 }
+
+#nested-component-heading {
+  color: #3e4152;
+  font-weight: 800;
+  font-size: 17px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}

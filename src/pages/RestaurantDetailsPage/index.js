@@ -19,7 +19,12 @@ export function RestaurantDetailsPage() {
     (state) => state.reducerRestaurantDetails
   );
   const { restaurantMenuData } = restaurantDetailsState;
-  const { TYPE_ITEM, TYPE_RESTAURANT, TYPE_RESTAURANT_ADDRESS } = constants;
+  const {
+    TYPE_ITEM,
+    TYPE_RESTAURANT,
+    TYPE_RESTAURANT_ADDRESS,
+    TYPE_NESTED_ITEMS,
+  } = constants;
 
   const renderCoupon = (couponData) => {
     const data = couponData.map((item) => {
@@ -38,9 +43,25 @@ export function RestaurantDetailsPage() {
   const renderFoodItems = (foodItemsData) => {
     const data = foodItemsData.map((item) => {
       const type = item?.card?.card?.["@type"];
+      const { title } = item?.card?.card;
       switch (type) {
+        case TYPE_NESTED_ITEMS:
+          const { categories } = item?.card?.card;
+          return (
+            <div style={{ paddingTop: "20px" }}>
+              <span id="nested-component-heading">{title}</span>
+              {categories.map((categoriesItem) => {
+                const { title, itemCards } = categoriesItem;
+                return (
+                  <CustomAccordion title={title} nested>
+                    {renderItems(itemCards)}
+                  </CustomAccordion>
+                );
+              })}
+            </div>
+          );
         case TYPE_ITEM:
-          const { title, itemCards } = item?.card?.card;
+          const { itemCards } = item?.card?.card;
           return (
             <CustomAccordion title={title}>
               {renderItems(itemCards)}
