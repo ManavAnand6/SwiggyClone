@@ -22,6 +22,20 @@ export const styles = {
   introHeaderImageContainerStyle: {
     fill: "#fc8019",
   },
+  nameStyle: {
+    backgroundColor: "#fff",
+    color: "#000",
+    textDecoration: "none",
+    cursor: "pointer",
+    display: "inline-block",
+    textAlign: "center",
+    fontWeight: "600",
+    height: "40px",
+    lineHeight: "40px",
+    width: "auto",
+    padding: "0 2rem",
+    border: "1px solid black",
+  },
   loginButtonStyle: {
     backgroundColor: "#fff",
     color: "#000",
@@ -34,7 +48,7 @@ export const styles = {
     lineHeight: "40px",
     width: "auto",
     padding: "0 2rem",
-    border: 'none',
+    border: "none",
   },
   signupButtonStyle: {
     backgroundColor: "#000",
@@ -49,7 +63,7 @@ export const styles = {
     lineHeight: "40px",
     width: "auto",
     padding: "0 2rem",
-    border: 'none',
+    border: "none",
   },
   textOneStyle: {
     marginTop: "60px",
@@ -199,9 +213,9 @@ export const styles = {
   },
   modalContainerStyle: {
     display: "flex",
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: '30px',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: "30px",
   },
   modalLoginTextStyle: {
     marginTop: "15px",
@@ -210,8 +224,8 @@ export const styles = {
   },
   modalDividerStyle: {
     content: "",
-    width: '30px',
-    border: '1px solid #000',
+    width: "30px",
+    border: "1px solid #000",
     marginTop: "18px",
   },
   modalSubTextContainerStyle: {
@@ -243,9 +257,9 @@ export const styles = {
     padding: "0",
   },
   afterLoginTextStyle: {
-    fontSize: '12px',
-    color: '#686b78',
-    marginTop: '6px',
-    fontWeight: '500',
-  }
+    fontSize: "12px",
+    color: "#686b78",
+    marginTop: "6px",
+    fontWeight: "500",
+  },
 };

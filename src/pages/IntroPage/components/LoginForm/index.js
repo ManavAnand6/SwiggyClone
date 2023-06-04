@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./style";
 import { LOGIN_FORM_CONSTANTS } from "./constantsLoginForm";
 import { StringContext } from "../../../../common/StringProvider";
+import { setModalState } from "../../actionIntroPage";
 
 export function LoginForm() {
+  const dispatch = useDispatch();
   const translations = useContext(StringContext);
+  const { openLoginForm, userInfo } = useSelector(
+    (state) => state.reducerIntroPage
+  );
   const [isField, setField] = useState({
     phoneNumberField: LOGIN_FORM_CONSTANTS.INITIAL_STATE,
     otpNumberField: LOGIN_FORM_CONSTANTS.INITIAL_STATE,
@@ -52,12 +58,29 @@ export function LoginForm() {
     validate,
     onSubmit: (values) => {
       if (showOtpField) {
-        alert(JSON.stringify(values, null, 2));
+        dispatch(
+          setModalState({
+            loginModal: false,
+            signupModal: false,
+          })
+        );
       } else {
         setShowOtpField(true);
       }
     },
   });
+
+  useEffect(() => {
+    if (openLoginForm) {
+      console.log("userInfo?.userPhoneNumber", userInfo?.userPhoneNumber);
+      formik.setFieldValue("phoneNumber", userInfo?.userPhoneNumber, true);
+      setField({
+        ...isField,
+        phoneNumberField: LOGIN_FORM_CONSTANTS.FINISH_STATE,
+      });
+      setShowOtpField(true);
+    }
+  }, [openLoginForm]);
 
   useEffect(() => {
     if (

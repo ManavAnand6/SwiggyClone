@@ -1,28 +1,93 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SvgIcons from "../../common/SvgIcons";
 import { Button } from "../../components/Button";
 import { styles } from "./style";
 import { imageLinkTwo } from "../../common/constant";
-import { LoginForm, SwiggyFeatures } from "./components";
+import { LoginForm, SwiggyFeatures, SignupForm } from "./components";
 import { CustomModal, Footer } from "../../components";
 import { secondContainerData } from "./dummyData";
 import { useLocation } from "../../hooks/useLocation";
 import { StringContext } from "../../common/StringProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { setModalState } from "./actionIntroPage";
+import { getItemFromLocalStorage } from "../../utilities/localStorageFunction";
 
 export function IntroPage() {
+  const dispatch = useDispatch();
   const translations = useContext(StringContext);
+  const { userInfo, modalState } = useSelector(
+    (state) => state.reducerIntroPage
+  );
   const { handleClick } = useLocation();
-  const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => {
-    if (showModal) {
-      setShowModal(false);
+  const openLoginModal = () => {
+    if (modalState.loginModal) {
+      dispatch(
+        setModalState({
+          loginModal: false,
+          signupModal: false,
+        })
+      );
       document.body.style.overflow = "auto";
     } else {
-      setShowModal(true);
+      dispatch(
+        setModalState({
+          signupModal: false,
+          loginModal: true,
+        })
+      );
       document.body.style.overflow = "hidden";
     }
   };
+
+  const renderButton = () => {
+    if (userInfo?.userName) {
+      return <div style={styles.nameStyle}>{userInfo?.userName}</div>;
+    }
+    return (
+      <div>
+        <Button
+          buttonText={translations.LOGIN}
+          customStyle={styles.loginButtonStyle}
+          onClick={openLoginModal}
+        />
+        <Button
+          buttonText={translations.SIGN_UP}
+          customStyle={styles.signupButtonStyle}
+          onClick={openSignupModal}
+        />
+      </div>
+    );
+  };
+
+  const openSignupModal = () => {
+    if (modalState.signupModal) {
+      dispatch(
+        setModalState({
+          loginModal: false,
+          signupModal: false,
+        })
+      );
+      document.body.style.overflow = "auto";
+    } else {
+      dispatch(
+        setModalState({
+          loginModal: false,
+          signupModal: true,
+        })
+      );
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  useEffect(() => {
+    const phoneNumber = getItemFromLocalStorage('phoneNumber');
+    const email = getItemFromLocalStorage('email');
+    console.log('phoneNumber', phoneNumber, 'email', email);
+    if (phoneNumber && email) {
+      handleClick();
+    }
+  }, []);
 
   return (
     <div>
@@ -32,17 +97,7 @@ export function IntroPage() {
             <span style={styles.introHeaderImageContainerStyle}>
               <SvgIcons.IntroSwiggyLogo />
             </span>
-            <div>
-              <Button
-                buttonText={translations.LOGIN}
-                customStyle={styles.loginButtonStyle}
-                onClick={openModal}
-              />
-              <Button
-                buttonText={translations.SIGN_UP}
-                customStyle={styles.signupButtonStyle}
-              />
-            </div>
+            {renderButton()}
           </div>
           <div>
             <div style={styles.textOneStyle}>Hungry ?</div>
@@ -131,9 +186,9 @@ export function IntroPage() {
         </div>
       </div>
       <Footer />
-      <CustomModal visible={showModal} openModal={openModal}>
+      <CustomModal visible={modalState.loginModal} openModal={openLoginModal}>
         <>
-          <div style={styles.modalCrossButtonStyle} onClick={openModal}>
+          <div style={styles.modalCrossButtonStyle} onClick={openLoginModal}>
             <SvgIcons.CrossButton />
           </div>
           <div
@@ -149,7 +204,10 @@ export function IntroPage() {
                 </div>
                 <div style={styles.modalSubTextContainerStyle}>
                   <div style={styles.modalOrTextStyle}>{translations.OR}</div>
-                  <div style={styles.modalCreateAccTextStyle}>
+                  <div
+                    style={styles.modalCreateAccTextStyle}
+                    onClick={openSignupModal}
+                  >
                     {translations.CREATE_YOUR_ACCOUNT}
                   </div>
                 </div>
@@ -162,6 +220,46 @@ export function IntroPage() {
               />
             </div>
             <LoginForm />
+            <div style={styles.afterLoginTextStyle}>
+              {translations.SWIGGY_POLICY_TEXT_LINE}
+            </div>
+          </div>
+        </>
+      </CustomModal>
+      <CustomModal visible={modalState.signupModal} openModal={openSignupModal}>
+        <>
+          <div style={styles.modalCrossButtonStyle} onClick={openSignupModal}>
+            <SvgIcons.CrossButton />
+          </div>
+          <div
+            style={{
+              paddingLeft: "40px",
+              paddingRight: "124px",
+            }}
+          >
+            <div style={styles.modalContainerStyle}>
+              <div>
+                <div style={styles.modalLoginTextStyle}>
+                  {translations.SIGN_UP}
+                </div>
+                <div style={styles.modalSubTextContainerStyle}>
+                  <div style={styles.modalOrTextStyle}>{translations.OR}</div>
+                  <div
+                    style={styles.modalCreateAccTextStyle}
+                    onClick={openLoginModal}
+                  >
+                    {translations.LOGIN_TO_YOUR_ACCOUNT}
+                  </div>
+                </div>
+                <div style={styles.modalDividerStyle}></div>
+              </div>
+              <img
+                width="100"
+                height="105"
+                src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
+              />
+            </div>
+            <SignupForm />
             <div style={styles.afterLoginTextStyle}>
               {translations.SWIGGY_POLICY_TEXT_LINE}
             </div>
