@@ -83,7 +83,6 @@ export function IntroPage() {
   useEffect(() => {
     const phoneNumber = getItemFromLocalStorage('phoneNumber');
     const email = getItemFromLocalStorage('email');
-    console.log('phoneNumber', phoneNumber, 'email', email);
     if (phoneNumber && email) {
       handleClick();
     }

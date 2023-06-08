@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { imageLink } from "../../common/constant";
 import SvgIcons from "../../common/SvgIcons";
-import { getRestaurantMenuData } from "./actionRestaurantDetails";
+import { clearData, getRestaurantMenuData } from "./actionRestaurantDetails";
 import {
   ComponentCustomCoupon,
   ComponentFoodList,
@@ -11,6 +11,7 @@ import {
 } from "./components";
 import { constants } from "./constantRestaurantDetails";
 import "./style.css";
+import { RestaurantDetailsPageShimmer } from "./shimmer";
 
 export function RestaurantDetailsPage() {
   const dispatch = useDispatch();
@@ -98,10 +99,13 @@ export function RestaurantDetailsPage() {
 
   useEffect(() => {
     dispatch(getRestaurantMenuData(id));
+    return () => {
+      dispatch(clearData());
+    };
   }, []);
 
   return (
-    restaurantMenuData.length !== 0 && (
+    restaurantMenuData.length !== 0 ? (
       <div id="restaurant-details-container" className="borderStyle">
         <div id="first-container">
           <div id="restaurant-container">
@@ -181,6 +185,6 @@ export function RestaurantDetailsPage() {
           )}
         </div>
       </div>
-    )
+    ) : (<RestaurantDetailsPageShimmer />)
   );
 }

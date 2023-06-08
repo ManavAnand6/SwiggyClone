@@ -11,6 +11,7 @@ import {
 import { Config } from "../../common/Config";
 import { makeGetRequest } from "../../common/NetworkOps";
 import { errorGettingRestaurantMenuData, GET_RESTAURANT_MENU_DATA, setRestaurantMenuData } from "./actionRestaurantDetails";
+import { getItemFromLocalStorage } from "../../utilities/localStorageFunction";
 
 export async function getMenuData(body) {
   const { restaurantId, longitude, latitude } = body;
@@ -20,18 +21,16 @@ export async function getMenuData(body) {
   return res;
 }
 
-export const epicRestaurantDetails = (action$, state$) =>
+export const epicRestaurantDetails = (action$) =>
   action$.pipe(
     ofType(GET_RESTAURANT_MENU_DATA),
     debounceTime(2500),
     pluck("payload"),
     mergeMap((restaurantId) => {
-      const { location } = state$.value.reducerIntroPage;
-      const { longitude, latitude } = location;
       const body = {
         restaurantId,
-        longitude,
-        latitude,
+        longitude: getItemFromLocalStorage('longitude'),
+        latitude: getItemFromLocalStorage('latitude')
       };
       return from(getMenuData(body)).pipe(
         map((res) => {

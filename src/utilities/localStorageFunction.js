@@ -1,4 +1,5 @@
 export const getItemFromLocalStorage = (key) => {
+  console.log('key', key);
   return JSON.parse(localStorage.getItem(key))
 };
 

@@ -3,11 +3,9 @@ import { RestaurantCard, CustomCarousel } from "./components";
 import "./style.css";
 import { BodyShimmer } from "./bodyShimmer";
 import { useSelector } from "react-redux";
+import { getItemFromLocalStorage } from "../../utilities/localStorageFunction";
 
 export const HomePage = () => {
-  const introPageState = useSelector((state) => state.reducerIntroPage);
-  const { location } = introPageState;
-  const { longitude, latitude } = location;
   const [restaurantData, setRestaurantData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const onValueChange = (e) => {
@@ -25,6 +23,8 @@ export const HomePage = () => {
   };
 
   const getRestaurantData = async () => {
+    const longitude = getItemFromLocalStorage('longitude');
+    const latitude = getItemFromLocalStorage('latitude');
     await fetch(
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}6&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`
     )

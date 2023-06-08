@@ -1,14 +1,10 @@
 import { 
-  SET_LOCATION,
+  IS_LOCATION_SET,
   SET_MODAL_STATE,
   SET_USER_INFO,
 } from "./actionIntroPage";
 
 const initialState = {
-  location: {
-    longitude: null,
-    latitude: null,
-  },
   userInfo: {
     userPhoneNumber: "",
     userName: "",
@@ -19,6 +15,7 @@ const initialState = {
     signupModal: false,
   },
   openLoginForm: false,
+  isUserLocationSet: false,
 };
 
 export const reducerIntroPage = (state = initialState, { type, payload }) => {
@@ -31,14 +28,10 @@ export const reducerIntroPage = (state = initialState, { type, payload }) => {
           signupModal: payload?.signupModal,
         },
       };
-    case SET_LOCATION:
+    case IS_LOCATION_SET:
       return {
         ...state,
-        location: {
-          ...state.location,
-          longitude: payload.longitude,
-          latitude: payload.latitude,
-        },
+        isUserLocationSet: payload,
       };
     case SET_USER_INFO:
       return {

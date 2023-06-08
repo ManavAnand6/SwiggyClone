@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { setLocation } from "../pages/IntroPage/actionIntroPage";
+import { isLocationSet } from "../pages/IntroPage/actionIntroPage";
+import { setItemFromLocalStorage } from "../utilities/localStorageFunction";
 
 export function useLocation() {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ export function useLocation() {
   const showPosition = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    dispatch(setLocation({ latitude, longitude }));
+    setItemFromLocalStorage('latitude', latitude);
+    setItemFromLocalStorage('longitude', longitude);
+    dispatch(isLocationSet(true));
   };
 
   return {
