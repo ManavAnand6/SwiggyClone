@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { isLocationSet } from "../pages/IntroPage/actionIntroPage";
 import { setItemFromLocalStorage } from "../utilities/localStorageFunction";
+import { isLocationSet } from "../pages/IntroPage/introPageSlice";
 
 export function useLocation() {
   const dispatch = useDispatch();

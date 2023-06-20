@@ -1,11 +1,11 @@
 import React from "react";
-import "./style.js";
 import { createPortal } from "react-dom";
-import { styles } from "./style.js";
 
 export function CustomModal({
   visible = false,
   openModal = () => {},
+  modalWrapperStyle = {},
+  modalContainerStyle = {},
   children,
 }) {
   return (
@@ -13,8 +13,8 @@ export function CustomModal({
       {visible
         ? createPortal(
             <>
-              <div style={styles.modalWrapper} onClick={openModal} />
-              <div style={styles.modalContainer}>{children}</div>
+              <div style={modalWrapperStyle} onClick={openModal} />
+              <div style={modalContainerStyle}>{children}</div>
             </>,
             document.body
           )

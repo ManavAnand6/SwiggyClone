@@ -5,6 +5,7 @@ export function RestaurantDetailsPageShimmer() {
     <div
       style={Styles.containerStyle}
     >
+      {console.log('Shimmer is on Screen')}
       {Array(2)
         .fill("")
         .map(() => (

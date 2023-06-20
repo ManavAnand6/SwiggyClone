@@ -50,3 +50,12 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+}

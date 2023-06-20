@@ -1,10 +1,11 @@
-import { combineReducers } from "redux";
-import reducerRestaurantDetails from "../pages/RestaurantDetailsPage/reducerRestaurantDetails";
-import { reducerIntroPage } from "../pages/IntroPage/reducerIntroPage";
+import { homePageReducer } from '../pages/HomePage/homePageSlice';
+import { introPageReducer } from '../pages/IntroPage/introPageSlice';
+import { restaurantDetailsPageReducer } from '../pages/RestaurantDetailsPage/restaurantDetailsPageSlice';
 
-const rootReducer = combineReducers({
-  reducerRestaurantDetails,
-  reducerIntroPage,
-});
+const rootReducer = {
+  introPage: introPageReducer,
+  restaurantDetailsPage: restaurantDetailsPageReducer,
+  homePage: homePageReducer,
+};
 
 export default rootReducer;

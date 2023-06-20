@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./style";
 import { LOGIN_FORM_CONSTANTS } from "./constantsLoginForm";
 import { StringContext } from "../../../../common/StringProvider";
-import { setModalState } from "../../actionIntroPage";
+import { setModalState } from "../../introPageSlice";
 
 export function LoginForm() {
   const dispatch = useDispatch();
   const translations = useContext(StringContext);
-  const { openLoginForm, userInfo } = useSelector(
-    (state) => state.reducerIntroPage
-  );
+  const { openLoginForm, userInfo } = useSelector((state) => state.introPage);
   const [isField, setField] = useState({
     phoneNumberField: LOGIN_FORM_CONSTANTS.INITIAL_STATE,
     otpNumberField: LOGIN_FORM_CONSTANTS.INITIAL_STATE,
@@ -70,9 +68,10 @@ export function LoginForm() {
     },
   });
 
+  console.log('userInfo', userInfo);
+
   useEffect(() => {
     if (openLoginForm) {
-      console.log("userInfo?.userPhoneNumber", userInfo?.userPhoneNumber);
       formik.setFieldValue("phoneNumber", userInfo?.userPhoneNumber, true);
       setField({
         ...isField,

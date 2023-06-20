@@ -1,9 +1,11 @@
 import { combineEpics } from "redux-observable";
 import { catchError } from "rxjs";
 import { epicRestaurantDetails } from "../pages/RestaurantDetailsPage/epicRestaurantDetails";
+import { epicGetRestaurantList } from "../pages/HomePage/epicHomePage";
 
 const epics = [
   epicRestaurantDetails,
+  epicGetRestaurantList,
 ];
 
 export const rootEpic = (action$, store$, dependencies) =>

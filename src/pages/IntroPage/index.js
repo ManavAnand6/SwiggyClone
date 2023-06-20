@@ -9,17 +9,17 @@ import { secondContainerData } from "./dummyData";
 import { useLocation } from "../../hooks/useLocation";
 import { StringContext } from "../../common/StringProvider";
 import { useDispatch, useSelector } from "react-redux";
-import { setModalState } from "./actionIntroPage";
+setModalState
 import { getItemFromLocalStorage } from "../../utilities/localStorageFunction";
+import { setModalState } from "./introPageSlice";
 
 export function IntroPage() {
   const dispatch = useDispatch();
   const translations = useContext(StringContext);
-  const { userInfo, modalState } = useSelector(
-    (state) => state.reducerIntroPage
-  );
+  const { userInfo, modalState } = useSelector((state) => state.introPage);
   const { handleClick } = useLocation();
 
+  console.log('=====>', userInfo, modalState);
   const openLoginModal = () => {
     if (modalState.loginModal) {
       dispatch(
@@ -81,8 +81,8 @@ export function IntroPage() {
   };
 
   useEffect(() => {
-    const phoneNumber = getItemFromLocalStorage('phoneNumber');
-    const email = getItemFromLocalStorage('email');
+    const phoneNumber = getItemFromLocalStorage("phoneNumber");
+    const email = getItemFromLocalStorage("email");
     if (phoneNumber && email) {
       handleClick();
     }
@@ -185,7 +185,12 @@ export function IntroPage() {
         </div>
       </div>
       <Footer />
-      <CustomModal visible={modalState.loginModal} openModal={openLoginModal}>
+      <CustomModal
+        visible={modalState.loginModal}
+        openModal={openLoginModal}
+        modalWrapperStyle={styles.modalWrapper}
+        modalContainerStyle={styles.modalContainer}
+      >
         <>
           <div style={styles.modalCrossButtonStyle} onClick={openLoginModal}>
             <SvgIcons.CrossButton />
@@ -225,7 +230,12 @@ export function IntroPage() {
           </div>
         </>
       </CustomModal>
-      <CustomModal visible={modalState.signupModal} openModal={openSignupModal}>
+      <CustomModal
+        visible={modalState.signupModal}
+        openModal={openSignupModal}
+        modalWrapperStyle={styles.modalWrapper}
+        modalContainerStyle={styles.modalContainer}
+      >
         <>
           <div style={styles.modalCrossButtonStyle} onClick={openSignupModal}>
             <SvgIcons.CrossButton />

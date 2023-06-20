@@ -25,7 +25,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   function (response) {
     try {
-      console.log('response ===>', response);
       const { data } = response;
       const { status, message, errorCode } = data;
       if (status !== 200) {

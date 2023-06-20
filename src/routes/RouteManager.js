@@ -6,7 +6,7 @@ import { getItemFromLocalStorage } from "../utilities/localStorageFunction";
 import { useSelector } from "react-redux";
 
 export function RouteManager() {
-  const { isUserLocationSet } = useSelector((state) => state.reducerIntroPage);
+  const { isUserLocationSet } = useSelector((state) => state.introPage);
 
   const handleRoute = () => {
     const longitude = getItemFromLocalStorage('longitude');

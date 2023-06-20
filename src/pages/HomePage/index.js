@@ -1,60 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { RestaurantCard, CustomCarousel } from "./components";
 import "./style.css";
 import { BodyShimmer } from "./bodyShimmer";
-import { useSelector } from "react-redux";
-import { getItemFromLocalStorage } from "../../utilities/localStorageFunction";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantData, setRestaurantData, setSearchValue } from "./homePageSlice";
 
 export const HomePage = () => {
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const { restaurantData, searchValue } = useSelector((state) => state.homePage);
   const onValueChange = (e) => {
-    setSearchValue(e.target.value);
+    dispatch(setSearchValue(e.target.value));
   };
+
   const filterData = () => {
     if (searchValue !== "") {
       const filteredData = restaurantData.filter((item) => {
         return item.data.data.name.includes(searchValue);
       });
-      setRestaurantData(filteredData);
+      dispatch(setRestaurantData(filteredData));
     } else {
-      setRestaurantData(data);
+      dispatch(setRestaurantData(data));
     }
   };
-
-  const getRestaurantData = async () => {
-    const longitude = getItemFromLocalStorage('longitude');
-    const latitude = getItemFromLocalStorage('latitude');
-    await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}6&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(response.status);
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        setRestaurantData(data?.data?.cards);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  
-  // Readable stream is of type object
-  // First then returns a readable stream we have to convert it into useable format
-  
-
   useEffect(() => {
-    getRestaurantData();
+    dispatch(getRestaurantData());
   }, []);
 
   useEffect(() => {
     if (!searchValue) {
-      getRestaurantData();
+      dispatch(getRestaurantData());
     }
   }, [searchValue]);
 

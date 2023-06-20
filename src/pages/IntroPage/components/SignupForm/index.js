@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./style";
 import { SIGNUP_FORM_CONSTANTS } from "./constantsSignupForm";
 import { StringContext } from "../../../../common/StringProvider";
-import { setUserInfo } from "../../actionIntroPage";
 import { LoginForm } from "../LoginForm";
 import { setItemFromLocalStorage } from "../../../../utilities/localStorageFunction";
+import { setUserInfo } from "../../introPageSlice";
 
 export function SignupForm() {
   const dispatch = useDispatch();
-  const { openLoginForm } = useSelector((state) => state.reducerIntroPage);
+  const { openLoginForm } = useSelector((state) => state.introPage);
   const translations = useContext(StringContext);
   const [isField, setField] = useState({
     phoneNumberField: SIGNUP_FORM_CONSTANTS.INITIAL_STATE,
