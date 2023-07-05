@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SvgIcons from "../../common/SvgIcons";
-import "./style.css";
 
 export const Header = () => {
   return (
     <div id="header" className="commonStyle">
       <div id="logoContainer">
-        {/* <img src={Images.LOGO} alt="logo" id="logo" /> */}
         <div id="logo">
           <SvgIcons.Logo />
         </div>

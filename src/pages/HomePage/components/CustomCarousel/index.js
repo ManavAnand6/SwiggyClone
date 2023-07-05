@@ -1,6 +1,5 @@
 import React from "react";
 import { carouselData } from "../../../../common/constant";
-import "./style.css";
 
 export function CustomCarousel() {
   const imageLink =

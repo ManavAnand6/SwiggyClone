@@ -1,15 +1,17 @@
+@use '../../../utilities/variables';
+
 #accordion-up-container {
   padding: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 16px solid #f1f1f6
+  border-bottom: 16px solid variables.$newWhiteColor;
 }
 
 #accordion-down-container {
   padding: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 16px solid #f1f1f6;
+  border-bottom: 16px solid variables.$newWhiteColor;
   display: flex;
   flex-direction: column;
 }
@@ -21,15 +23,13 @@
 }
 
 .accordion-heading {
-  color: #3e4152;
+  color: variables.$arsenicColor;
   font-weight: 800;
   font-size: 17px;
-  /* letter-spacing: 1; */
 }
 
 .accordion-heading-nested {
-  color: #3e4152;
+  color: variables.$arsenicColor;
   font-weight: 500;
   font-size: 16px;
-  /* letter-spacing: 1; */
 }

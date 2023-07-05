@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { RestaurantCard, CustomCarousel } from "./components";
-import "./style.css";
 import { BodyShimmer } from "./bodyShimmer";
 import { useDispatch, useSelector } from "react-redux";
 import { getRestaurantData, setRestaurantData, setSearchValue } from "./homePageSlice";

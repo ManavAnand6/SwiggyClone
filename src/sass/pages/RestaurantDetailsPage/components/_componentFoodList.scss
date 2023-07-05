@@ -1,10 +1,11 @@
+@use "../../../utilities/variables";
+
 #food-list-container {
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.5px solid #d3d3d3;
-  /* height: 0.5px; */
+  border-bottom: 0.5px solid variables.$lightGreyColor;
   margin: 20px 0;
 }
 
@@ -17,14 +18,14 @@
   margin-right: 4px;
   font-size: 17px;
   font-weight: 500;
-  color: #3e4152;
+  color: variables.$arsenicColor;
   word-break: break-word;
 }
 
 #food-price {
   margin-right: 8px;
   font-weight: 400;
-  color: #3e4152;
+  color: variables.$arsenicColor;
   font-size: 13px;
   margin-top: 5px;
 }
@@ -46,7 +47,7 @@
 }
 
 #bestseller-ribbon {
-  color: #ee9c00;
+  color: variables.$darkOrangeColor;
   font-weight: 500;
   font-size: 12px;
   margin-left: 4px;
@@ -55,26 +56,32 @@
 #bestseller-ribbon-container {
   display: flex;
   flex-direction: row;
-  fill: #ee9c00;
+  fill: variables.$darkOrangeColor;
   margin-bottom: 4px;
 }
 
-#bestseller-ribbon-container > svg {
-  width: 12px;
-  height: 12px;
+#bestseller-ribbon-container {
+  > svg {
+    width: 12px;
+    height: 12px;
+  }
 }
 
 #add-food-button {
-  border: 1px solid #d4d5d9;
-  color: #60b246;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: 0 3px 8px #e9e9eb;
+  cursor: pointer;
+}
+
+.button {
+  border: 1px solid variables.$lightSilverColor;
+  color: variables.$appleColor;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 30px;
+  background-color: variables.$whiteColor;
+  box-shadow: 0 3px 8px variables.$brightGreyColor;
   border-radius: 4px;
   position: relative;
   top: -30px;

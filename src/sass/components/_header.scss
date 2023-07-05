@@ -5,13 +5,15 @@
   justify-content: center;
 }
 
-.cart-logo-container > span {
-  position: relative;
-  right: 19;
-  bottom: 8;
-  font-size: 12px;
-  font-weight: 500;
-} 
+.cart-logo-container {
+  > span {
+    position: relative;
+    right: 19;
+    bottom: 8;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
 
 .logo-tag {
   margin-left: 15px;

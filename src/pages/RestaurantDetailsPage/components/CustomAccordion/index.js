@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./style.css";
 import SvgIcons from "../../../../common/SvgIcons";
 
 export function CustomAccordion({
@@ -17,17 +16,9 @@ export function CustomAccordion({
 
   const renderTitle = () => {
     if (nested) {
-      return (
-        <div className="accordion-heading-nested">
-          {title}
-        </div>
-      );
+      return <div className="accordion-heading-nested">{title}</div>;
     }
-    return (
-      <div className="accordion-heading">
-        {title}
-      </div>
-    );
+    return <div className="accordion-heading">{title}</div>;
   };
 
   return expanded ? (
@@ -40,8 +31,13 @@ export function CustomAccordion({
       </div>
     </div>
   ) : (
-    <div id="accordion-down-container" onClick={changeCaretStatus}>
-      <div ref={customRef} id={sectionId} className="align-style">
+    <div id="accordion-down-container">
+      <div
+        ref={customRef}
+        onClick={changeCaretStatus}
+        id={sectionId}
+        className="align-style"
+      >
         {renderTitle()}
         <span>
           <SvgIcons.CaretUp />

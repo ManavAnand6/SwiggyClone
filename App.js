@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouteManager } from "./src/routes/RouteManager";
 import { Provider } from "react-redux";
 import store from "./src/services/store";
-
+import './main.scss';
 
 const App = () => {
   return (

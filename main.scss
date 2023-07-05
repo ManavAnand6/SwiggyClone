@@ -1,0 +1,21 @@
+/******* BASE STYLE FILE *******/
+@use "src/sass/base/base";
+
+/****** COMMON COMPONENTS ******/
+@use 'src/sass/components/header';
+
+/******* PAGE STYLE FILES ******/
+
+// ABOUT PAGE
+@use "src/sass/pages/AboutPage/aboutPage";
+
+// HOME PAGE
+@use "src/sass/pages/HomePage/homePage";
+@use "src/sass/pages/HomePage/components/customCarousel";
+@use "src/sass/pages/HomePage/components/restaurantCard";
+
+// RESTAURANT DETAILS PAGE
+@use "src/sass/pages/RestaurantDetailsPage/restaurantDetailsPage";
+@use "src/sass/pages/RestaurantDetailsPage/components/componentCustomCoupon";
+@use "src/sass/pages/RestaurantDetailsPage/components/componentFoodList";
+@use "src/sass/pages/RestaurantDetailsPage/components/customAccordion";

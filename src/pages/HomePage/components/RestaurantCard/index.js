@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Images from "../../../../common/images";
-import "./style.css";
 
 export function RestaurantCard({ data }) {
   const navigate = useNavigate();

@@ -1,0 +1,21 @@
+@use "../../../utilities/variables";
+
+#carousel-container {
+  height: 340px;
+  width: 100%;
+  background-color: variables.$darkJungleGreenColor;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#carousel-container {
+  img {
+    transition-property: width, height;
+    transition-duration: 0.5s;
+    &:hover {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}

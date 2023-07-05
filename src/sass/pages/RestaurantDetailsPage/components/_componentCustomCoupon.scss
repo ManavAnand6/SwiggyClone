@@ -1,3 +1,5 @@
+@use '../../../utilities/variables';
+
 .coupon-image {
   width: 20px;
   height: 20px;
@@ -8,12 +10,12 @@
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
-  color: #686b78;
+  color: variables.$darkSilverColor;
 }
 
 .coupon-code-lower-container {
   font-size: 13px;
-  color: #93959f;
+  color: variables.$spanishGreyColor;
   margin-top: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -30,7 +32,7 @@
 #coupon-code-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e9e9eb;
+  border: 1px solid variables.$brightGreyColor;
   box-sizing: border-box;
   box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
   border-radius: 8px;

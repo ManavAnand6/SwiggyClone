@@ -1,7 +1,9 @@
+@use "../../../utilities/variables";
+
 #restaurant-subheading {
   font-size: 13px;
   margin-top: 4px;
-  color: #686b78;
+  color: variables.$darkSilverColor;
   display: inline;
 }
 
@@ -10,7 +12,7 @@
   font-size: 17px;
   font-weight: 500;
   word-break: break-word;
-  color: black;
+  color: variables.$blackColor;
 }
 
 .restaurant-card {
@@ -19,13 +21,12 @@
   box-sizing: border-box;
   margin: 20;
   content: contain;
-  color: #535665;
+  color: variables.$independenceColor;
   font-size: 12px;
-}
-
-.restaurant-card:hover {
-  border: 1px solid #d4d5d9;
-  box-shadow: 0 3px 8px #e9e9eb;
+  &:hover {
+    border: 1px solid variables.$lightSilverColor;
+    box-shadow: 0 3px 8px variables.$brightGreyColor;
+  }
 }
 
 #restaurant-subContainer {
@@ -36,26 +37,26 @@
 }
 
 #rating-container {
-  background-color: #48c479;
+  background-color: variables.$emeraldColor;
   padding: 5px;
   height: 20px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  > div {
+    color: variables.$whiteColor;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  > img {
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+  }
 }
 
-#rating-container > div {
-  color: white;
-  font-weight: 500;
-  font-size: 13px;
-}
-#rating-container > img {
-  width: 10px;
-  height: 10px;
-  margin-right: 3px;
-}
 .dot-container {
-  background-color: black;
+  background-color: variables.$blackColor;
   height: 2px;
   width: 2px;
   border-radius: 1px;

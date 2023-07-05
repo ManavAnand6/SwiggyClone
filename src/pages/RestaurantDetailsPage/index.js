@@ -16,7 +16,6 @@ import {
   CustomAccordion,
 } from "./components";
 import { constants } from "./constantRestaurantDetails";
-import "./style.css";
 import { RestaurantDetailsPageShimmer } from "./shimmer";
 import { Button } from "../../components/Button";
 import { CustomModal } from "../../components";
