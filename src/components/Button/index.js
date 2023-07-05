@@ -4,6 +4,7 @@ export function Button({
   buttonText = "",
   customStyle = {},
   onClick = () => {},
+  className = ""
 }) {
-  return <div onClick={onClick} style={customStyle}>{buttonText}</div>;
+  return <div className={className} onClick={onClick} style={customStyle}>{buttonText}</div>;
 }

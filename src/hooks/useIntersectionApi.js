@@ -1,25 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { setVisibleSectionId } from "../pages/RestaurantDetailsPage/restaurantDetailsPageSlice";
+import { useDispatch } from "react-redux";
 
-export function useIntersectionApi({ sectionRefArray }) {
+export function useIntersectionApi(restaurantMenuData) {
+  const dispatch = useDispatch();
+  const sectionRefArray = useRef([]);
+
+  const addSectionId = (ref) => {
+    sectionRefArray.current.push(ref);
+  };
+
   useEffect(() => {
-    console.log('sectionRefArray', sectionRefArray);
-    if (sectionRefArray.current.length !== 0) {
+    if (restaurantMenuData.length !== 0) {
       const options = {
         root: null,
         rootMargin: "0px",
         threshold: 0.5,
       };
 
-      const callback = (entries, observer) => {
+      const callback = (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const sectionId = entry.target.id;
-            console.log("sectionId", sectionId);
-            // Perform actions when the section enters the viewport
-          } else {
-            const sectionId = entry.target.id;
-            console.log("sectionId", sectionId);
-            // Perform actions when the section exits the viewport
+            dispatch(setVisibleSectionId(sectionId));
           }
         });
       };
@@ -27,21 +30,21 @@ export function useIntersectionApi({ sectionRefArray }) {
       const observer = new IntersectionObserver(callback, options);
       sectionRefArray.current.forEach((ref) => {
         if (ref) {
-          console.log("sectionRefArray[ref]", ref);
           observer.observe(ref);
         }
       });
+
+      return () => {
+        sectionRefArray.current.forEach((ref) => {
+          if (ref) {
+            observer.unobserve(ref);
+          }
+        });
+      };
     }
+  }, [restaurantMenuData]);
 
-    return () => {
-      sectionRefArray.current.forEach((ref) => {
-        if (ref) {
-          console.log("sectionRefArray[ref]", ref);
-          observer.unobserve(ref);
-        }
-      });
-    };
-  }, [sectionRefArray]);
-
-  return null;
+  return {
+    addSectionId,
+  };
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { imageLink } from "../../common/constant";
@@ -7,7 +7,6 @@ import {
   clearData,
   getRestaurantMenuData,
   openMenuModal,
-  setVisibleSectionId,
 } from "./restaurantDetailsPageSlice";
 import {
   BrowserMenuCard,
@@ -19,6 +18,7 @@ import { constants } from "./constantRestaurantDetails";
 import { RestaurantDetailsPageShimmer } from "./shimmer";
 import { Button } from "../../components/Button";
 import { CustomModal } from "../../components";
+import { useIntersectionApi } from "../../hooks/useIntersectionApi";
 
 export function RestaurantDetailsPage() {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export function RestaurantDetailsPage() {
     TYPE_RESTAURANT_ADDRESS,
     TYPE_NESTED_ITEMS,
   } = constants;
-  const sectionRefArray = useRef([]);
+  const { addSectionId } = useIntersectionApi(restaurantMenuData);
 
   useEffect(() => {
     dispatch(getRestaurantMenuData(id));
@@ -54,49 +54,6 @@ export function RestaurantDetailsPage() {
       return <ComponentFoodList data={foodItem} />;
     });
     return newData;
-  };
-
-  useEffect(() => {
-    if (restaurantMenuData.length !== 0) {
-      const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5,
-      };
-
-      const callback = (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            console.log("sectionId interSecting", sectionId);
-            dispatch(setVisibleSectionId(sectionId));
-          } else {
-            const sectionId = entry.target.id;
-            console.log("sectionId notInterSecting", sectionId);
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(callback, options);
-      sectionRefArray.current.forEach((ref) => {
-        if (ref) {
-          observer.observe(ref);
-        }
-      });
-
-      return () => {
-        sectionRefArray.current.forEach((ref) => {
-          if (ref) {
-            console.log("sectionRefArray[ref]", ref);
-            observer.unobserve(ref);
-          }
-        });
-      };
-    }
-  }, [restaurantMenuData]);
-
-  const addSectionId = (ref) => {
-    sectionRefArray.current.push(ref);
   };
 
   const renderFoodItems = (foodItemsData) => {
@@ -240,15 +197,7 @@ export function RestaurantDetailsPage() {
             </span>
           </div>
         </div>
-        <div
-          style={{
-            overflowX: "scroll",
-            whiteSpace: "nowrap",
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "0",
-          }}
-          id="coupon-list"
-        >
+        <div id="coupon-list">
           {renderCoupon(
             restaurantMenuData?.cards[1]?.card?.card?.gridElements
               ?.infoWithStyle?.offers
@@ -261,39 +210,11 @@ export function RestaurantDetailsPage() {
             ?.groupedCard?.cardGroupMap?.REGULAR?.cards
         )}
       </div>
-      <div
-        style={{
-          position: "fixed",
-          left: "50%",
-          top: "90%",
-          transform: "translateX(-50%)",
-          width: "150px",
-          height: "40px",
-          pointerEvents: "auto",
-        }}
-      >
+      <div id="browserButtonContainer">
         <Button
           buttonText="Browse Menu"
           onClick={openMenu}
-          customStyle={{
-            position: "fixed",
-            borderRadius: "30px",
-            background: "#5d8ed5",
-            color: "#fff",
-            textAlign: "center",
-            boxShadow:
-              "0 5px 10px 0 rgb(0 0 0 / 30%), 0 2px 1px 0 rgb(93 141 213 / 20%)",
-            padding: "14px",
-            fontWeight: "600",
-            fontSize: "13px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textTransform: "uppercase",
-            willChange: "transform",
-            transform: "scaleX(1)",
-            transition: "transform .25s ease-in-out",
-          }}
+          className="browserMenuButton"
         />
       </div>
       {isMenuModalOpen && (
